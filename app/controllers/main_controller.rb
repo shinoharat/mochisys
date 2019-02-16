@@ -10,6 +10,11 @@ class MainController < ApplicationController
     @condition_details = condition_details
   end
 
+  # GET /logout
+  def logout
+    render plain: 'logout', status: :unauthorized
+  end
+
   private
 
   def conditions
