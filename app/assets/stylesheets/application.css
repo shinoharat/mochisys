@@ -13,3 +13,157 @@
  *= require_tree .
  *= require_self
  */
+
+button, input, optgroup, select, textarea {
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
+}
+
+textarea {
+	overflow: auto;
+}
+
+.notice-message {
+	position: absolute;
+	top: 2px;
+	right: 24px;
+	z-index: 999;
+	padding: 8px;
+	background-color: #aaffaa;
+	border-radius: 3px;
+}
+
+.half-left {
+	width: 50%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+.half-right {
+	width: 50%;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+.full {
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+.input-fields {
+	border: 1px solid #c6cbcd;
+	padding: 10px;
+	background-color: #fff;
+}
+
+.editorMain {
+	display: none;
+	border: 1px solid #c6cbcd;
+
+	background-color: #fff;
+}
+
+.editorMain_title {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	overflow: auto;
+	padding: 4px;
+	color: #4d4d4d;
+	background-color: #dfdfdf;
+}
+
+.editorMain_title input {
+	width: 100%;
+	height: 32px;
+	padding: 4px;
+
+	box-sizing: border-box;
+
+	font-size: 16px;
+}
+
+.editorMain_body {
+	width: 100%;
+	position: absolute;
+	top: 41px;
+	bottom: 0;
+}
+
+.editorTextarea {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	border-radius: 0;
+	outline: 0;
+	display: block;
+	margin-bottom: 0;
+	padding: 10px;
+	border: 0;
+	font-family: Consolas,Liberation Mono,Menlo,Courier,monospace;
+	color: #fafafa;
+	background-color: #333;
+	line-height: 1.5;
+	resize: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.editorPreview {
+	display: none;
+	border: 1px solid #c6cbcd;
+
+}
+	
+.editorPreview_header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	overflow: auto;
+  color: #fff;
+  background-color: #00bcd4;
+  padding: 2px;
+}
+
+.editorPreview_title {
+	position: absolute;
+	top: 22px;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	overflow: auto;
+	padding: 8px;
+	color: #333;
+	background-color: #e2e1da;
+	font-size: 14px;
+}
+
+.editorPreview_body {
+	position: absolute;
+	top: 48px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: auto;
+	padding: 10px;
+	color: #000;
+	background-color: #fff;
+}

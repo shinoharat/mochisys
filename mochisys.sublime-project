@@ -1,0 +1,9 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/shinoharatakuya/develop/mochisys",
+			"folder_exclude_patterns": ["vendor", "tmp"]
+		}
+	]
+}

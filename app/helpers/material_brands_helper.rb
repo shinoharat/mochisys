@@ -1,0 +1,2 @@
+module MaterialBrandsHelper
+end

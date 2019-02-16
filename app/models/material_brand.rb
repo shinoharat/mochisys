@@ -1,0 +1,2 @@
+class MaterialBrand < ApplicationRecord
+end

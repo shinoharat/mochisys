@@ -1,0 +1,2 @@
+module ClothingBrandsHelper
+end

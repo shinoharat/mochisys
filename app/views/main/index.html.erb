@@ -1,0 +1,242 @@
+<div class="menu" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;background-color: #333;color: #fafcfc;padding: 8px">
+  <p id="notice" class="notice-message">
+    <%= notice %>
+  </p>
+
+  <h1 style="float: left; margin: 14px 80px 0px 32px;">Mochis</h1>
+  <div style="float: left; margin-right: 60px;background-color: #ffffff;padding: 12px;"><a href="/">商品説明文の作成</a></div>
+  <div style="float: left; margin-right: 10px;background-color: #fafafa;padding: 12px"><a href="/templates">テンプレ</a></div>
+  <div style="float: left; margin-right: 10px;background-color: #fafafa;padding: 12px"><a href="/colors">色</a></div>
+  <div style="float: left; margin-right: 10px;background-color: #fafafa;padding: 12px"><a href="/clothing_brands">ブランド</a></div>
+  <div style="float: left; margin-right: 10px;background-color: #fafafa;padding: 12px"><a href="/designs">デザイン</a></div>
+  <div style="float: left; margin-right: 10px;background-color: #fafafa;padding: 12px"><a href="/material_brands">素材ブランド</a></div>
+  <div style="float: left; margin-right: 10px;background-color: #fafafa;padding: 12px"><a href="/condition_details">状態詳細</a></div>
+</div>
+
+<div style="position: absolute;top: 64px;left: 0;right: 0;bottom: 0;width: 100%;">
+  <div class="input-fields full">
+    <div class="field">
+      <label style="float: left; margin-right: 40px;">
+        テンプレート
+        <%= select_tag "templates", options_from_collection_for_select(@templates, "id", "name") %>
+      </label>
+
+      <label style="float: left; margin-right: 40px;">
+        <input id="show-preview" type="checkbox">
+        プレビュー表示
+      </label>
+    </div>
+
+    <br style="clear: both;">
+
+    <hr>
+
+    <div style="float: left; padding: 10px;">
+      <div class="field template-item" data-type="スーツ用">
+        <label>スーツ種類</label>
+        <%= select_tag "suit_type", options_for_select(%w[シングルスーツ ダブルスーツ].sort) %>
+        <%# TODO: ちゃんとマスタから取得する %>
+      </div>
+
+      <div class="field template-item" data-type="コート用">
+        <label>コート種類</label>
+        <%= select_tag "coat_type", options_for_select(%w[ステンカラーコート チェスターフィールドコート トレンチコート キルティングコート モッズコート].sort) %>
+        <%# TODO: ちゃんとマスタから取得する %>
+      </div>
+
+      <div class="field template-item">
+        <label for="conditions">状態</label>
+        <%= select_tag "conditions", options_for_select(@conditions), data: { 'filter-to': 'condition_details_template' } %>
+      </div>
+
+      <div class="field template-item">
+        <label for="condition_details">状態詳細</label>
+        <div class="editable-select">
+          <%= select_tag "condition_details_template", options_for_select(@condition_details), prompt: '[定形文選択]', class: 'ignore' %><br>
+          <textarea id="condition_details" cols="80" rows="4"></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="colors">色</label>
+        <%= select_tag "colors", options_from_collection_for_select(@colors, "id", "name") %>
+
+        <div class="template-item" style="display: none;">
+          <label>色:名前</label><input id="colors-name" type="hidden" value="">
+        </div>
+
+        <div class="template-item" style="display: none;">
+          <label>色:説明</label><input id="colors-description" type="hidden" value="">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="clothing_brands">ブランド</label>
+        <%= select_tag "clothing_brands", options_from_collection_for_select(@clothing_brands, "id", "ja_name") %>
+
+        <div class="template-item" style="display: none;">
+          <label>ブランド:日名</label><input id="clothing_brands-ja_name" type="hidden" value="">
+        </div>
+
+        <div class="template-item" style="display: none;">
+          <label>ブランド:英名</label><input id="clothing_brands-en_name" type="hidden" value="">
+        </div>
+
+        <div class="template-item" style="display: none;">
+          <label>ブランド:説明</label><input id="clothing_brands-description" type="hidden" value="">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="designs">デザイン</label>
+        <%= select_tag "designs", options_from_collection_for_select(@designs, "id", "name"), include_blank: 'なし' %>
+
+        <div class="template-item" style="display: none;">
+          <label>デザイン:名前</label><input id="designs-name" type="hidden" value="">
+        </div>
+
+        <div class="template-item" style="display: none;">
+          <label>デザイン:説明</label><input id="designs-description" type="hidden" value="">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="material_brands">素材ブランド</label>
+        <%= select_tag "material_brands", options_from_collection_for_select(@material_brands, "id", "name"), include_blank: 'なし' %>
+        REVIEW: 複数のブランドを選ぶことがある？
+
+        <div class="template-item" style="display: none;">
+          <label>素材ブランド:名前</label><input id="material_brands-name" type="hidden" value="">
+        </div>
+
+        <div class="template-item" style="display: none;">
+          <label>素材ブランド:説明</label><input id="material_brands-description" type="hidden" value="">
+        </div>
+      </div>
+
+      <div class="field template-item">
+        <label for="aaaa">高級素材</label>
+        <%= select_tag "aaaa", options_for_select(['カシミア', 'アンゴラ', 'アルパカ', 'ベロア'].sort), include_blank: 'なし' %>      
+        TODO: マスタ作成、説明文追加
+      </div>
+
+      <div class="field template-item">
+        <label for="catchphrase">キャッチコピー</label>
+        <%= text_field_tag "catchphrase", "", placeholder: "例) 漆黒の高級感", style: 'width: 320px' %>
+        <!-- <button style="padding: 2px 10px">自動</button> -->
+      </div>
+    </div>
+
+    <div style="float: left; padding: 10px;">
+      <div class="field template-item">
+        <label>素材詳細</label>
+        <textarea name="" id="" cols="60" rows="5">表地
+裏地</textarea>
+        REVIEW:素材の入力欄これでいいか？（使いにくい？）
+      </div>
+  <!-- 
+      <div class="field template-item" data-type="スーツ用">
+        <label>素材:裏地</label>
+        <input type="text" value="" style="width: 200px">
+      </div>
+
+      <div class="field template-item" data-type="コート用">
+        <label>素材:胴裏</label>
+        <input type="text" value="" style="width: 200px">
+      </div>
+
+      <div class="field template-item" data-type="コート用">
+        <label>素材:袖裏</label>
+        <input type="text" value="" style="width: 200px">
+      </div>
+
+      <div class="field template-item" data-type="コート用">
+        <label>素材:中綿</label>
+        <input type="text" value="" style="width: 200px">
+      </div> -->
+
+      <div class="field template-item">
+        <label>表記サイズ</label>
+        <input type="text" value="" style="width: 100px">
+      </div>
+
+      <div class="field template-item">
+        <label>サイズ:ジャケット</label>
+        <input type="text" value="肩幅約cm、身幅約cm、袖丈約cm、着丈約cm" style="width: 400px">
+        REVIEW: 入力欄分けるべき？
+      </div>
+
+      <div class="field template-item" data-type="スーツ用">
+        <label>サイズ:パンツ</label>
+        <input type="text" value="ウエスト 約cm、股下 約cm、裾幅 約cm、わたり幅 約cm" style="width: 400px">
+        REVIEW: 入力欄分けるべき？
+      </div>
+
+      <div class="field template-item" data-type="スーツ用">
+        <label>サイズ:備考</label>
+        <textarea cols="60" rows="3"></textarea>
+      </div>
+
+      <div class="field template-item">
+        <label>オプション</label>
+        <label data-type="スーツ用"><input type="checkbox" value="総裏">総裏</label>
+        <label data-type="スーツ用"><input type="checkbox" value="背抜き">背抜き</label>
+        <label data-type="スーツ用"><input type="checkbox" value="2釦">2釦</label>
+        <label data-type="スーツ用"><input type="checkbox" value="3釦">3釦</label>
+        <label data-type="スーツ用"><input type="checkbox" value="予備生地付き">予備生地付き</label>
+        <label data-type="スーツ用"><input type="checkbox" value="予備ボタン付き">予備ボタン付き</label>
+        <label data-type="コート用"><input type="checkbox" value="比翼仕立て">比翼仕立て</label>
+        <label data-type="コート用"><input type="checkbox" value="ベルト付き">ベルト付き</label>
+        <label data-type="コート用"><input type="checkbox" value="フード付き">フード付き</label>
+        <%# TODO: ちゃんとマスタから取得する %>
+      </div>
+
+      <div class="field">
+        <button id="goto-next" style="padding: 4px;width: 100px">次へ</button>
+      </div>
+    </div>
+
+<!-- REVIEW
+* 方向性はあってるか？
+* 文字は小さくないか？
+* 動作が重くないか？
+
+TODO
+* 不足している入力項目を実装
+* マスタの値をちゃんと入れる
+* セレクトボックスのUI向上
+  - インクリメンタルサーチ
+* キャッチコピーなど、テキストボックスは過去の履歴から選択可能に
+* うっかりブラウザを閉じても、前回値を復元できるようにする
+  - ブラウザのストレージ？
+* ヤフオクAPIと連携して、この画面から直接出品？
+
+運用など
+* DBのバックアップいるのでは？
+* サーバーがダウンしたらどうするか？ → herokuで公開 or Electronでデスクアプリ化  
+* 認証は必要か？
+ -->
+  </div>
+
+  <div class="editorMain half-left">
+    <div class="editorMain_title">
+      <input id="title" class="form-control" name="auction[title]" placeholder="商品名" tabindex="1" value="">
+    </div>
+    <div class="editorMain_body">
+      <textarea id="body" class="editorTextarea" name="auction[body]" placeholder="商品の説明文" tabindex="3"></textarea>
+    </div>
+  </div>
+
+  <div class="editorPreview half-right">
+    <div class="editorPreview_header">
+      プレビュー
+      [タイトル文字数:<span class="editorPreview_title_counter">0/65</span>]
+      <button id="editorPreview_title_copy_btn">タイトルをコピー</button>
+      <button id="editorPreview_body_copy_btn">本文をコピー</button>
+    </div>
+    <div class="editorPreview_title">now loading...</div>
+    <div class="editorPreview_body">now loading...</div>
+  </div>
+</div>
+
+

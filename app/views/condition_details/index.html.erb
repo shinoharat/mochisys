@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Condition Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Color code</th>
+      <th>Tags</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @condition_details.each do |condition_detail| %>
+      <tr>
+        <td><%= condition_detail.name %></td>
+        <td><%= condition_detail.description %></td>
+        <td><%= condition_detail.color_code %></td>
+        <td><%= condition_detail.tags %></td>
+        <td><%= link_to 'Show', condition_detail %></td>
+        <td><%= link_to 'Edit', edit_condition_detail_path(condition_detail) %></td>
+        <td><%= link_to 'Destroy', condition_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Condition Detail', new_condition_detail_path %>

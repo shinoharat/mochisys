@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ja name:</strong>
+  <%= @clothing_brand.ja_name %>
+</p>
+
+<p>
+  <strong>En name:</strong>
+  <%= @clothing_brand.en_name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @clothing_brand.description %>
+</p>
+
+<%= link_to 'Edit', edit_clothing_brand_path(@clothing_brand) %> |
+<%= link_to 'Back', clothing_brands_path %>

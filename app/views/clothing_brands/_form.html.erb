@@ -1,0 +1,32 @@
+<%= form_with(model: clothing_brand, local: true) do |form| %>
+  <% if clothing_brand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(clothing_brand.errors.count, "error") %> prohibited this clothing_brand from being saved:</h2>
+
+      <ul>
+      <% clothing_brand.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ja_name %>
+    <%= form.text_field :ja_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :en_name %>
+    <%= form.text_field :en_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
