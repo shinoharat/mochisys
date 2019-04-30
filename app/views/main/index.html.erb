@@ -58,8 +58,21 @@
       </div>
 
       <div class="field">
-        <label for="colors">色</label>
+        <label for="colors">色:表地</label>
         <%= select_tag "colors", options_from_collection_for_select(@colors, "id", "name") %>
+
+        <div class="template-item" style="display: none;">
+          <label>色:名前</label><input id="colors-name" type="hidden" value="">
+        </div>
+
+        <div class="template-item" style="display: none;">
+          <label>色:説明</label><input id="colors-description" type="hidden" value="">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="colors">色:裏地</label>
+        <%= select_tag "colors", options_from_collection_for_select(@colors, "id", "name"), include_blank: 'なし' %>
 
         <div class="template-item" style="display: none;">
           <label>色:名前</label><input id="colors-name" type="hidden" value="">
@@ -103,7 +116,7 @@
       <div class="field">
         <label for="material_brands">素材ブランド</label>
         <%= select_tag "material_brands", options_from_collection_for_select(@material_brands, "id", "name"), include_blank: 'なし' %>
-        REVIEW: 複数のブランドを選ぶことがある？
+        REVIEW: 複数のブランドを選ぶことがある？→ない
 
         <div class="template-item" style="display: none;">
           <label>素材ブランド:名前</label><input id="material_brands-name" type="hidden" value="">
@@ -115,9 +128,10 @@
       </div>
 
       <div class="field template-item">
-        <label for="aaaa">高級素材</label>
-        <%= select_tag "aaaa", options_for_select(['カシミア', 'アンゴラ', 'アルパカ', 'ベロア'].sort), include_blank: 'なし' %>      
-        TODO: マスタ作成、説明文追加
+        <label for="aaaa">素材</label>
+        <%= select_tag "aaaa", options_for_select(['ナイロン', 'ウール', 'カシミア', 'アンゴラ', 'アルパカ', 'ベロア'].sort) %>      
+        TODO: マスタ作成、説明文追加<br>
+        ナイロン→「上質な素材を〜」<br>カシミアとか→「素材に使われているカシミヤは、アンゴラ、アルパカと並び高級素材〜」
       </div>
 
       <div class="field template-item">
@@ -129,31 +143,34 @@
 
     <div style="float: left; padding: 10px;">
       <div class="field template-item">
-        <label>素材詳細</label>
-        <textarea name="" id="" cols="60" rows="5">表地
-裏地</textarea>
-        REVIEW:素材の入力欄これでいいか？（使いにくい？）
+        <label>素材:表地</label>
+        <input type="text" value="％" style="width: 200px">
       </div>
-  <!-- 
-      <div class="field template-item" data-type="スーツ用">
+  
+      <div class="field template-item">
         <label>素材:裏地</label>
-        <input type="text" value="" style="width: 200px">
+        <input type="text" value="％" style="width: 200px">
       </div>
 
-      <div class="field template-item" data-type="コート用">
+      <div class="field template-item">
         <label>素材:胴裏</label>
-        <input type="text" value="" style="width: 200px">
+        <input type="text" value="％" style="width: 200px">
       </div>
 
-      <div class="field template-item" data-type="コート用">
+      <div class="field template-item">
         <label>素材:袖裏</label>
-        <input type="text" value="" style="width: 200px">
+        <input type="text" value="％" style="width: 200px">
       </div>
 
-      <div class="field template-item" data-type="コート用">
+      <div class="field template-item">
         <label>素材:中綿</label>
-        <input type="text" value="" style="width: 200px">
-      </div> -->
+        <input type="text" value="％" style="width: 200px">
+      </div>
+
+      <div class="field template-item">
+        <label>素材:その他</label>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      </div>
 
       <div class="field template-item">
         <label>表記サイズ</label>
@@ -162,19 +179,20 @@
 
       <div class="field template-item">
         <label>サイズ:ジャケット</label>
-        <input type="text" value="肩幅約cm、身幅約cm、袖丈約cm、着丈約cm" style="width: 400px">
-        REVIEW: 入力欄分けるべき？
+        <input type="text" value="肩幅約cm、身幅約cm、袖丈約cm、着丈約cm" style="width: 480px">
+        TODO: 入力欄分ける
       </div>
 
       <div class="field template-item" data-type="スーツ用">
         <label>サイズ:パンツ</label>
-        <input type="text" value="ウエスト 約cm、股下 約cm、裾幅 約cm、わたり幅 約cm" style="width: 400px">
-        REVIEW: 入力欄分けるべき？
+        <input type="text" value="ウエスト 約cm、股上 約cm、股下 約cm、裾幅 約cm、わたり幅 約cm" style="width: 480px">
+        TODO: 入力欄分ける
       </div>
 
-      <div class="field template-item" data-type="スーツ用">
-        <label>サイズ:備考</label>
-        <textarea cols="60" rows="3"></textarea>
+      <div class="field template-item">
+        <label>サイズ:ベスト</label>
+        <input type="text" value="肩幅約cm、身幅約cm、着丈約cm" style="width: 480px">
+        TODO: 入力欄分ける、(注)あったりなかったり
       </div>
 
       <div class="field template-item">
@@ -185,6 +203,10 @@
         <label data-type="スーツ用"><input type="checkbox" value="3釦">3釦</label>
         <label data-type="スーツ用"><input type="checkbox" value="予備生地付き">予備生地付き</label>
         <label data-type="スーツ用"><input type="checkbox" value="予備ボタン付き">予備ボタン付き</label>
+        <label data-type="スーツ用"><input type="checkbox" value="本切羽">本切羽</label>
+        <label data-type="スーツ用"><input type="checkbox" value="センターベント">センターベント</label>
+        <label data-type="スーツ用"><input type="checkbox" value="サイドベンツ">サイドベンツ</label>
+        <label data-type="スーツ用"><input type="checkbox" value="ノーベント">ノーベント</label>
         <label data-type="コート用"><input type="checkbox" value="比翼仕立て">比翼仕立て</label>
         <label data-type="コート用"><input type="checkbox" value="ベルト付き">ベルト付き</label>
         <label data-type="コート用"><input type="checkbox" value="フード付き">フード付き</label>
@@ -194,9 +216,17 @@
       <div class="field">
         <button id="goto-next" style="padding: 4px;width: 100px">次へ</button>
       </div>
-    </div>
 
-<!-- REVIEW
+<pre>
+要望
+* サイズの直下にタック数を表示したい
+  - ラジオボタン（１タック、２タック、ノータック）
+
+ノータック
+ウェスト約＊cm程度伸ばせます。
+裾(シングル|ダブル)（約＊cm程度伸ばせます。）
+
+REVIEW
 * 方向性はあってるか？
 * 文字は小さくないか？
 * 動作が重くないか？
@@ -215,7 +245,9 @@ TODO
 * DBのバックアップいるのでは？
 * サーバーがダウンしたらどうするか？ → herokuで公開 or Electronでデスクアプリ化  
 * 認証は必要か？
- -->
+</pre>
+
+    </div>
   </div>
 
   <div class="editorMain half-left">
